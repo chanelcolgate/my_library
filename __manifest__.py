@@ -1,11 +1,11 @@
 {
 	'name': 'My library',
 	'summary': 'Manage books easily',
-	'description': "
-		Manage Library
-		==================
-		Description related to library.
-	",
+        'description': """
+Manage Library
+==================
+Description related to library.
+""",
 	'author': 'Naga',
 	'website': 'http://www.example.com',
 	'category': 'Uncategorized',
