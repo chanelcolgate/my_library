@@ -14,7 +14,9 @@ Description related to library.
 	'depends': ['base'],
 	# This data files will be loaded at the installation (commented because file is not added in this example)
 	 'data': [
-		'views/library_book.xml'
+	 	'security/groups.xml',
+	 	'security/ir.model.access.csv',
+		'views/library_book.xml',
 	],
 	# This demo data files wll be loaded if db initialize with demo data (commented because file is not added in this example)
 	#'demo': [
