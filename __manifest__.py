@@ -1,20 +1,23 @@
+# -*- coding: utf-8 -*-
 {
-	'name': 'My library',
-	'summary': 'Manage books easily',
-        'description': """
+	'name': "My Library", # Module title
+	'summary': "Manage books easily", # Module subtitle phrase
+	'description': """
 Manage Library
-==================
+==============
 Description related to library.
-""",
-	'author': 'Naga',
-	'website': 'http://www.example.com',
-	'category': 'Uncategorized',
-	'version': '13.0.1',
+	""", # Supports reStructuredText(RST) format
+	'author': "Parth Gajjar",
+	'website': "http://www.example.com",
+	'category': 'Tools',
+	'version': '14.0.1',
 	'depends': ['base'],
-	'data': [
-            #'views/views.xml'
-            ],
-	'demo': [
-            #'demo.xml'
-            ],
+	# This data files will be loaded at the installation (commented because file is not added in this example)
+	# 'data': [
+	#	'view.xml'
+	#],
+	# This demo data files wll be loaded if db initialize with demo data (commented because file is not added in this example)
+	#'demo': [
+	#	'demo.xml'
+	#],
 }
