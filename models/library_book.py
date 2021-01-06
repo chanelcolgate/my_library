@@ -9,7 +9,7 @@ class LibraryBook(models.Model):
     short_name = fields.Char('Short Title', translate=True, index=True)
     notes = fields.Text('Internal Notes')
     state = fields.Selection(
-    	[('draf', 'Not Available'),
+    	[('draft', 'Not Available'),
     	 ('available', 'Available'),
     	 ('lost', 'Lost')],
     	 'State', default="draft")
