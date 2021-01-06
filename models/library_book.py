@@ -31,6 +31,15 @@ class LibraryBook(models.Model):
     string='Authors'
     )
     cost_price = fields.Float('Book Cost', digits='Book Price')
+    currency_id = fields.Many2one('res.currency', string='Currency')
+    retail_price = fields.Monetary('Retail Price') # optional attribute: currency_field='currency_id' incase currency field have another name then 'currency_id'
+
+    publisher_id = fields.Many2one('res.partner', string='Publisher',
+    	# optional:
+    	ondelete='set null',
+    	context={},
+    	domain=[],
+    )
 
     def name_get(self):
     	"""This method used to customize display name of the record"""
@@ -39,3 +48,13 @@ class LibraryBook(models.Model):
     		rec_name = "%s (%s)" % (record.name, record.date_release)
     		result.append((record.id, rec_name))
     	return result
+
+class ResPartner(models.Model):
+	_inherit = 'res.partner'
+
+	published_book_ids = fields.One2many('library.book', 'publisher_id', string='Published Books')
+	authored_book_ids = fields.Many2many(
+		'library.book',
+		string='Authored Books',
+		# relation='library_book_res_partner_rel' # optional
+	) 
