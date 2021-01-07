@@ -24,6 +24,7 @@ class LibraryBook(models.Model):
     state = fields.Selection(
     	[('draft', 'Not Available'),
     	 ('available', 'Available'),
+         ('borrowed','Borrowed'),
     	 ('lost', 'Lost')],
     	 'State', default="draft")
     description = fields.Html('Description', sanitize=True, strip_style=False)
@@ -130,6 +131,36 @@ class LibraryBook(models.Model):
         return [(x.model, x.name) for x in models]
 
     ref_doc_id = fields.Reference(selection='_referencable_models', string='Reference Document')
+
+    # Defining model methods and using API decorators
+    # Add a helper method to check whether a state transition is allowed
+    @api.model
+    def is_allowed_transition(self, old_state, new_state):
+        allowed = [('draft','available'),
+        ('available','borrowed'),
+        ('borrowed','available'),
+        ('available','lost'),
+        ('borrowed','lost'),
+        ('lost','available')]
+        return (old_state, new_state) in allowed
+
+    # Add a method to change the state of some books to a new state that is passed as an argument:
+    def change_state(self, new_state):
+        for book in self:
+            if book.is_allowed_transition(book.state, new_state):
+                book.state = new_state
+            else:
+                continue
+
+    # Add a method to change the book state by calling the change_state method:
+    def make_available(self):
+        self.change_state('available')
+
+    def make_borrowed(self):
+        self.change_state('borrowed')
+
+    def make_lost(self):
+        self.change_state('lost')
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
