@@ -132,14 +132,14 @@ class LibraryBook(models.Model):
     ref_doc_id = fields.Reference(selection='_referencable_models', string='Reference Document')
 
 class ResPartner(models.Model):
-	_inherit = 'res.partner'
+    _inherit = 'res.partner'
 
-	published_book_ids = fields.One2many('library.book', 'publisher_id', string='Published Books')
-	authored_book_ids = fields.Many2many(
-		'library.book',
-		string='Authored Books',
-		# relation='library_book_res_partner_rel' # optional
-	) 
+    published_book_ids = fields.One2many('library.book', 'publisher_id', string='Published Books')
+    authored_book_ids = fields.Many2many(
+        'library.book',
+        string='Authored Books',
+    # relation='library_book_res_partner_rel' # optional
+    ) 
 
     count_books = fields.Integer('Number of Authored Books', compute='_compute_count_books')
 
