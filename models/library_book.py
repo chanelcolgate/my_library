@@ -3,6 +3,16 @@ from datetime import timedelta
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
+class BaseArchive(models.AbstractModel):
+    _name = 'base.archive'
+    _description = 'Abstract Archive'
+
+    active = fields.Boolean(default=True)
+
+    def do_archive(self):
+        for record in self:
+            record.active = not record.active
+
 class LibraryBook(models.Model):
     _name = 'library.book'
     _description = 'Library Book'
@@ -137,3 +147,15 @@ class ResPartner(models.Model):
     def _compute_count_books(self):
         for r in self:
             r.count_books = len(r.authored_book_ids)
+
+class LibraryMember(models.Model):
+    _name = 'library.member'
+    _inherits = {'res.partner': 'partner_id'}
+
+    _description = 'Library Member'
+
+    partner_id = fields.Many2one('res.partner', required=True, ondelete='cascade')
+    date_start = fields.Date('Member since')
+    date_end = fields.Date('Termination Date')
+    member_number = fields.Char()
+    date_of_birth = fields.Date('Date of birth')
