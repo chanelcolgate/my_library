@@ -1,7 +1,8 @@
 from datetime import timedelta
 
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
+from odoo.tools.translate import _
 
 class BaseArchive(models.AbstractModel):
     _name = 'base.archive'
@@ -150,7 +151,8 @@ class LibraryBook(models.Model):
             if book.is_allowed_transition(book.state, new_state):
                 book.state = new_state
             else:
-                continue
+                message = _('Moving from %s to %s is not allowed') % (book.state, new_state)
+                return UserError(message)
 
     # Add a method to change the book state by calling the change_state method:
     def make_available(self):
@@ -161,6 +163,15 @@ class LibraryBook(models.Model):
 
     def make_lost(self):
         self.change_state('lost')
+
+    # Reporting errors to the user
+    # Obtaining an empty recordset for different model
+    def log_all_library_members(self):
+        library_member_model = self.env['library.member'] # This is an empty recordset of model library.member
+        all_members = library_member_model.search([])
+        print("ALL MEMBERS:", all_members)
+        return True
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
