@@ -172,6 +172,31 @@ class LibraryBook(models.Model):
         print("ALL MEMBERS:", all_members)
         return True
 
+    # Creating new records
+    def create_categories(self):
+        categ1 = {
+            'name': 'Child category 1',
+            'description': 'Description for child 1'
+        }
+
+        categ2 = {
+            'name': 'Child category 2',
+            'description': 'Description for child 2'
+        }
+
+        parent_category_val = {
+            'name': 'Parent category',
+            'description': 'Description for parent category',
+            'child_ids': [
+                (0, 0, categ1),
+                (0, 0, categ2),
+            ]
+        }
+
+        # Total 3 records (1 parent and 2 child) will be created in library.book.category model
+        record = self.env['library.book.category'].create(parent_category_val)
+        return True
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
