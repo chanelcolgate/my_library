@@ -169,7 +169,7 @@ class LibraryBook(models.Model):
     def log_all_library_members(self):
         library_member_model = self.env['library.member'] # This is an empty recordset of model library.member
         all_members = library_member_model.search([])
-        print("ALL MEMBERS:", all_members)
+        print("ALL MEMBERS: %s" % all_members)
         return True
 
     # Creating new records
@@ -212,14 +212,14 @@ class LibraryBook(models.Model):
                      ('category_id_name', '=', 'Category Name 2')
         ]
         books = self.search(domain)
-        print('Book found: %s', books)
+        print('Book found: %s' % books)
         return True
 
     # Filtering recordsets
     def filter_books(self):
         all_books = self.search([])
         filter_books = self.books_with_multiple_authors(all_books)
-        print('Filtered Books: %s', filter_books)
+        print('Filtered Books: %s' % filter_books)
 
     @api.model
     def books_with_multiple_authors(self, all_books):
@@ -232,7 +232,7 @@ class LibraryBook(models.Model):
     def mapped_books(self):
         all_books = self.search([])
         books_authors = self.get_author_names(all_books)
-        print('Book Authors: %s', books_authors)
+        print('Book Authors: %s' % books_authors)
 
     @api.model
     def get_author_names(self, all_books):
