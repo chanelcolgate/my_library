@@ -22,6 +22,10 @@
                     <button name="make_lost" string="Make Lost" type="object"/>
                     <button name="log_all_library_members" string="Log Members" type="object"/>
                     <button name="create_categories" string="Create Categories" type="object"/>
+                    <button name="change_release_date" string="Update date" type="object"/>
+                    <button name="find_book" string="Find book" type="object"/>
+                    <button name="filter_books" string="Filter Book" type="object"/>
+                    <button name="mapped_boos" string="Mapped authors" type="object"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <group>

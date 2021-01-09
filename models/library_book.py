@@ -197,6 +197,46 @@ class LibraryBook(models.Model):
         record = self.env['library.book.category'].create(parent_category_val)
         return True
 
+    # Updating values of recordset records
+    def change_release_date(self):
+        self.ensure_one()
+        self.date_release = fields.Date.today()
+
+    # Searching for records
+    def find_book(self):
+        domain = [
+            '|',
+                '&', ('name', 'ilike', 'Book Name'),
+                     ('category_id_name', '=', 'Category Name'),
+                '&', ('name', 'ilike', 'Book Name 2'),
+                     ('category_id_name', '=', 'Category Name 2')
+        ]
+        books = self.search(domain)
+        print('Book found: %s', books)
+        return True
+
+    # Filtering recordsets
+    def filter_books(self):
+        all_books = self.search([])
+        filter_books = self.books_with_multiple_authors(all_books)
+        print('Filtered Books: %s', filter_books)
+
+    @api.model
+    def books_with_multiple_authors(self, all_books):
+        def predicate(book):
+            if len(book.author_ids) > 1:
+                return True
+        return all_books.filtered(predicate)
+
+    # Traversing recordset
+    def mapped_books(self):
+        all_books = self.search([])
+        books_authors = self.get_author_names(all_books)
+        print('Book Authors: %s', books_authors)
+
+    @api.model
+    def get_author_names(self, all_books):
+        return all_books.mapped('author_ids.name')
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
