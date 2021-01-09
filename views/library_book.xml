@@ -25,7 +25,7 @@
                     <button name="change_release_date" string="Update date" type="object"/>
                     <button name="find_book" string="Find book" type="object"/>
                     <button name="filter_books" string="Filter Book" type="object"/>
-                    <button name="mapped_boos" string="Mapped authors" type="object"/>
+                    <button name="mapped_books" string="Mapped authors" type="object"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <group>
@@ -45,13 +45,13 @@
                         <field name="publisher_id"/>
                         <field name="publisher_city"/>
                         <field name="date_release"/>
-			            <field name="date_updated"/>
+			<field name="date_updated"/>
                         <field name="age_days"/>
-			            <field name="cover" widget="image" class="oe_avatar"/>
+			<field name="cover" widget="image" class="oe_avatar"/>
                         <field name="reader_rating"/>
                         <field name="ref_doc_id"/>
                     </group>
-		            <group>
+		    <group>
                         <field name="description"/>
                     </group>
                 </group>
