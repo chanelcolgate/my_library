@@ -21,7 +21,7 @@ Description related to library.
 		'data/data.xml'
 	],
 	# This demo data files wll be loaded if db initialize with demo data (commented because file is not added in this example)
-	#'demo': [
-	#	'demo.xml'
-	#],
+	'demo': [
+		'data/demo.xml'
+	],
 }
