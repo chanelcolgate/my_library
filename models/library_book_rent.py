@@ -3,6 +3,10 @@ from odoo import models, fields, api
 class LibraryBookRent(models.Model):
 	_name = 'library.book.rent'
 
+	@api.model
+	def _default_rent_stage(self):
+		Stage = self.env['library.rent.stage']
+		return Stage.search([], limit=1)
 	book_id = fields.Many2one('library.book', 'Book', required=True)
 	borrowed_id = fields.Many2one('res.partner', 'Borrower', required=True)
 	state = fields.Selection([('ongoing', 'Ongoing'),
@@ -10,6 +14,10 @@ class LibraryBookRent(models.Model):
 							  'State', default='ongoing', required=True)
 	rent_date = fields.Date(default=fields.Date.today)
 	return_date = fields.Date()
+	stage_id = fields.Many2one(
+		'library.rent.stage',
+		default=_default_rent_stage
+	)
 
 	@api.model
 	def create(self, vals):
@@ -26,7 +34,7 @@ class LibraryBookRent(models.Model):
 		})
 
 class LibraryRentStage(models.Model):
-	_name = 'library.rent_stage'
+	_name = 'library.rent.stage'
 	_order = 'sequence,name'
 
 	name = fields.Char()
