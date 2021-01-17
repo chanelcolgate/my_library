@@ -24,3 +24,16 @@ class LibraryBookRent(models.Model):
 			'state': 'returned',
 			'return_date': fields.Date.today()
 		})
+
+class LibraryRentStage(models.Model):
+	_name = 'library.rent_stage'
+	_order = 'sequence,name'
+
+	name = fields.Char()
+	sequence = fields.Integer()
+	fold = fields.Boolean()
+	book_state = fields.Selection(
+		[('available', 'Available'),
+		 ('borrowed', 'Borrowed'),
+		 ('lost', 'Lost')],
+		'State', default="available")
