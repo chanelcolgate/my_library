@@ -20,6 +20,11 @@ class LibraryBookRent(models.Model):
 	def _default_rent_stage(self):
 		Stage = self.env['library.rent.stage']
 		return Stage.search([], limit=1)
+
+	@api.model
+	def _group_expand_stages(self, stages, domain, order):
+		return stages.search([], order=order)
+
 	book_id = fields.Many2one('library.book', 'Book', required=True)
 	borrowed_id = fields.Many2one('res.partner', 'Borrower', required=True)
 	state = fields.Selection([('ongoing', 'Ongoing'),
@@ -29,7 +34,8 @@ class LibraryBookRent(models.Model):
 	return_date = fields.Date()
 	stage_id = fields.Many2one(
 		'library.rent.stage',
-		default=_default_rent_stage
+		default=_default_rent_stage,
+		group_expand='_group_expand_stages'
 	)
 
 	@api.model
