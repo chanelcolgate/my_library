@@ -1,5 +1,10 @@
 from odoo import models, fields, api
 
+class ResPartner(models.Model):
+	_inherit = 'res.partner'
+
+	rent_ids = fields.One2many('library.book.rent', 'borrowed_id')
+
 class LibraryRentTags(models.Model):
 	_name = 'library.rent.tag'
 
@@ -50,7 +55,7 @@ class LibraryBookRent(models.Model):
 								   ('medium', 'Average Demand'),
 								   ('high', 'High Demand'),])
 	tag_ids = fields.Many2many('library.rent.tag')
-	
+
 	@api.model
 	def create(self, vals):
 		rent = super(LibraryBookRent, self).create(vals)
