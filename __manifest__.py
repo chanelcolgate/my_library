@@ -11,7 +11,7 @@ Description related to library.
 	'website': "http://www.example.com",
 	'category': 'Tools',
 	'version': '14.0.1',
-	'depends': ['base'],
+	'depends': ['base', 'contacts'],
 	# This data files will be loaded at the installation (commented because file is not added in this example)
 	 'data': [
 	 	'security/groups.xml',
