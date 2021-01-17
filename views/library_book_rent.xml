@@ -35,7 +35,7 @@
 			<tree>
 				<field name="book_id" />
 				<field name="borrowed_id" />
-				<field name="state" />
+				<field name="stage_id" />
 			</tree>
 		</field>
 	</record>
@@ -48,8 +48,8 @@
 			<search>
 				<field name="book_id" />
 				<field name="borrowed_id" />
-				<field name="state" />
-				<filter string="On rent" name="on_rent" domain="[('state','=','ongoing')]" />
+				<field name="stage_id" />
+				<filter string="On rent" name="on_rent" domain="[('stage_id.book_state','=','borrowed')]" />
 			</search>
 		</field>
 	</record>
