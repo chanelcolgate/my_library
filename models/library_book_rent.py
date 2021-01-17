@@ -34,15 +34,13 @@ class LibraryBookRent(models.Model):
 
 	@api.model
 	def create(self, vals):
-		book_rec = self.env['library.book'].browse(vals['book_id'])
-		book_rec.make_borrowed()
-		return super(LibraryBookRent, self).create(vals)
+		rent = super(LibraryBookRent, self).create(vals)
+		if rent.stage_id.book_state:
+			rent.stage_id.book_state = rent.stage_id.book_state
+		return rent
 
-	def book_return(self):
-		self.ensure_one()
-		self.book_id.make_available()
-		self.write({
-			'state': 'returned',
-			'return_date': fields.Date.today()
-		})
-
+	def write(self, vals):
+		rent = super(LibraryBookRent, self).write(vals)
+		if self.stage_id.book_state:
+			self.stage_id.book_state = self.stage_id.book_state
+		return rent
