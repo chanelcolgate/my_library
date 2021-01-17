@@ -1,5 +1,18 @@
 from odoo import models, fields, api
 
+class LibraryRentStage(models.Model):
+	_name = 'library.rent.stage'
+	_order = 'sequence,name'
+
+	name = fields.Char()
+	sequence = fields.Integer()
+	fold = fields.Boolean()
+	book_state = fields.Selection(
+		[('available', 'Available'),
+		 ('borrowed', 'Borrowed'),
+		 ('lost', 'Lost')],
+		'State', default="available")
+
 class LibraryBookRent(models.Model):
 	_name = 'library.book.rent'
 
@@ -33,15 +46,3 @@ class LibraryBookRent(models.Model):
 			'return_date': fields.Date.today()
 		})
 
-class LibraryRentStage(models.Model):
-	_name = 'library.rent.stage'
-	_order = 'sequence,name'
-
-	name = fields.Char()
-	sequence = fields.Integer()
-	fold = fields.Boolean()
-	book_state = fields.Selection(
-		[('available', 'Available'),
-		 ('borrowed', 'Borrowed'),
-		 ('lost', 'Lost')],
-		'State', default="available")
