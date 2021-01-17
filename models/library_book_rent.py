@@ -1,5 +1,11 @@
 from odoo import models, fields, api
 
+class LibraryRentTags(models.Model):
+	_name = 'library.rent.tag'
+
+	name = fields.Char()
+	color = fields.Integer()
+
 class LibraryRentStage(models.Model):
 	_name = 'library.rent.stage'
 	_order = 'sequence,name'
