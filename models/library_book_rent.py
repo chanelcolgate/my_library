@@ -44,6 +44,13 @@ class LibraryBookRent(models.Model):
 		group_expand='_group_expand_stages'
 	)
 
+	color = fields.Integer()
+	popularity = fields.Selection([('no', 'No Demand'),
+								   ('low', 'Low Demand'),
+								   ('medium', 'Average Demand'),
+								   ('high', 'High Demand'),])
+	tag_ids = fields.Many2many('library.rent.tag')
+	
 	@api.model
 	def create(self, vals):
 		rent = super(LibraryBookRent, self).create(vals)
