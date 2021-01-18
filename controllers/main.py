@@ -46,3 +46,13 @@ class Main(http.Controller):
 	@http.route("/my_library/book_details/<model('library.book'):book>", type='http', auth='none')
 	def book_details_in_path(self, book):
 		return self.book_details(book.id)
+
+	@http.route('/demo_page', type='http', auth='none')
+	def books(self):
+		image_url = '/my_library/static/src/image/odoo.png'
+		html_result = """<html>
+			<body>
+				<img src="%s" />
+			</body>
+		</html>""" % image_url
+		return html_result
