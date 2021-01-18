@@ -5,7 +5,7 @@ class Main(http.Controller):
 
 	@http.route('/my_library/all-books', type='http', auth='none')
 	def all_books(self):
-		books = request.env['library.book'].sudo().searh([])
+		books = request.env['library.book'].sudo().search([])
 		html_result = '<html><body><ul>'
 		for book in books:
 			html_result += '<li> %s </li>' % book.name
@@ -14,7 +14,7 @@ class Main(http.Controller):
 
 	@http.route('/my_library/all-books/mark-mine', type='http', auth='public')
 	def all_books_mark_mine(self):
-		books = request.env['library.book'].sudo().searh([])
+		books = request.env['library.book'].sudo().search([])
 		html_result = '<html><body><ul>'
 		for book in books:
 			if request.env.user.partner_id.id in book.author_ids.ids:
