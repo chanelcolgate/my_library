@@ -9,6 +9,15 @@ class Main(http.Controller):
 			'my_library.books', {
 				'books': request.env['library.book'].search([]),
 			})
+
+	# Managing dynamic routes
+	@http.route('/books/<model("library.book"):book>', type='http', auth='user', website=True)
+	def library_book_detail(self, book):
+		return request.render(
+			'my_library.book_detail', {
+				'book': book,
+			})
+
 	@http.route('/my_library/all-books', type='http', auth='none')
 	def all_books(self):
 		books = request.env['library.book'].sudo().search([])

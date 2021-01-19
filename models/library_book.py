@@ -15,6 +15,8 @@ class LibraryBook(models.Model):
         'State', default="available")
     cost_price = fields.Float("Book Cost")
     category_id = fields.Many2one('library.book.category')
+    image = fields.Binary(attachment=True)
+    html_description = fields.Html()
 
     def name_get(self):
         result = []
