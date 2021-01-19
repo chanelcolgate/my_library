@@ -11,7 +11,7 @@ Description related to library.
 	'website': "http://www.example.com",
 	'category': 'Tools',
 	'version': '14.0.1',
-	'depends': ['base', 'contacts'],
+	'depends': ['base', 'contacts', 'website'],
 	# This data files will be loaded at the installation (commented because file is not added in this example)
 	 'data': [
 	 	'security/groups.xml',
@@ -19,6 +19,7 @@ Description related to library.
 		'views/library_book.xml',
 		'views/library_book_categ.xml',
 		'views/library_book_rent.xml',
+		'views/templates.xml',
 		'data/library_stage.xml',
 		'report/book_rent_templates.xml',
 		'report/book_rent_report.xml',
