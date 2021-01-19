@@ -44,7 +44,7 @@
 	<!-- inheritance example -->
 	<template id="books_ids_inh" inherit_id="my_library.books">
 		<xpath expr="//div[@id='card_body']/b" position="replace">
-			<b class="mt8"> Authors (<t t-esc="len(book.author_ids"/>) </b>
+			<b class="mt8"> Authors (<t t-esc="len(book.author_ids)"/>) </b>
 		</xpath>
 	</template>
 
