@@ -26,7 +26,7 @@
 									<span t-esc="author.name" />
 								</li>
 							</ul>
-							<a t-attf-href="/books/#{book.id}" class="btn btn-primary btn-sm">
+							<a t-attf-href="/books/#{book.id}" class="btn btn-primary">
 								<i class="fa fa-book"/>
 									Book Detail
 							</a>
