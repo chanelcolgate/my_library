@@ -20,6 +20,7 @@ Description related to library.
 		'views/library_book_categ.xml',
 		'views/library_book_rent.xml',
 		'views/templates.xml',
+		'views/snippets.xml',
 		'data/library_stage.xml',
 		'report/book_rent_templates.xml',
 		'report/book_rent_report.xml',
