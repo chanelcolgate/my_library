@@ -62,7 +62,6 @@
 					<we-button data-select-data-attribute="10" title="10 Books">10</we-button>
 					<we-button data-select-data-attribute="15" title="15 Books">15</we-button>
 				</we-button-group>
-				</we-button-group>
 			</div>
 		</xpath>
 	</template>
